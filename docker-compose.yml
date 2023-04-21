@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  mordhau:
+    build:
+      context: ./tmp
+      dockerfile: Dockerfile
+    user: mordhau
+    command: /data/./MordhauServer.sh -GAMEINI="/data/Game.ini" -ENGINEINI="/data/Engine.ini" -Port="7777" -QueryPort="27015" -BeaconPort="15000"
+    volumes:
+      - ./mordhau_data:/data
+    ports:
+      - "7777:7777/udp"
+      - "27015:27015/udp"
+      - "15000:15000/tcp"
